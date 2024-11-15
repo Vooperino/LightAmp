@@ -1,0 +1,18 @@
+[
+    {"MidiNote":35,"Instrument":"BassDrum",  "GameNote":55},
+    {"MidiNote":36,"Instrument":"BassDrum",  "GameNote":57},
+    {"MidiNote":38,"Instrument":"SnareDrum", "GameNote":67},
+    {"MidiNote":40,"Instrument":"SnareDrum", "GameNote":69},
+    {"MidiNote":41,"Instrument":"BassDrum",  "GameNote":63},
+    {"MidiNote":43,"Instrument":"BassDrum",  "GameNote":66},
+    {"MidiNote":45,"Instrument":"BassDrum",  "GameNote":70},
+    {"MidiNote":47,"Instrument":"BassDrum",  "GameNote":73},
+    {"MidiNote":48,"Instrument":"BassDrum",  "GameNote":77},
+    {"MidiNote":49,"Instrument":"Cymbals",   "GameNote":74},
+    {"MidiNote":50,"Instrument":"BassDrum",  "GameNote":80},
+    {"MidiNote":52,"Instrument":"Cymbals",   "GameNote":69},
+    {"MidiNote":55,"Instrument":"Cymbals",   "GameNote":77},
+    {"MidiNote":57,"Instrument":"Cymbals",   "GameNote":71},
+    {"MidiNote":60,"Instrument":"Bongo",     "GameNote":70},
+    {"MidiNote":61,"Instrument":"Bongo",     "GameNote":67}
+]

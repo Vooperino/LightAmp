@@ -39,15 +39,16 @@ jobs:
       - name: Build solution
         run: msbuild LightAmp.sln -t:rebuild -property:Configuration=Release -property:Platform="x64"
 
-      - name: CleanUp
+      - name: Preparing for artifacting
         run: |
             Remove-Item -Path ./BardMusicPlayer.Ui/bin/x64/Release/Melanchall_DryWetMidi_Native32.dll
             Remove-Item -Path ./BardMusicPlayer.Ui/bin/x64/Release/Melanchall_DryWetMidi_Native64.dylib
             Remove-Item -Path ./BardMusicPlayer.Ui/bin/x64/Release/LightAmp.pdb
             Remove-Item -Path ./BardMusicPlayer.Ui/bin/x64/Release/LightAmp.exe.config
+            Remove-Item -Recurse -Confirm -Path ./BardMusicPlayer.Ui/bin/x64/Release/de-DE
+            Remove-Item -Recurse -Confirm -Path ./BardMusicPlayer.Ui/bin/x64/Release/ZeroTier.Source.ReadOnly
 
-      - name: Compress the Project
-        run: Compress-Archive -Path ./BardMusicPlayer.Ui/bin/x64/Release/* -Destination ./BardMusicPlayer.Ui/bin/x64/Release/LightAmp${{steps.get-version.outputs.version}}.zip
+            Copy-Item -Path ./.github/files/DrumMap.json -Destination ./BardMusicPlayer.Ui/bin/x64/Release
 
       - name: Upload Artifact
         uses: actions/upload-artifact@v4
