@@ -1,0 +1,57 @@
+name: .NET Build
+
+jobs:
+  build:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: true
+
+      - name: Check Current Version in AssemblyInfo.cs
+        id: get-version
+        env:
+          POWERSHELL_TELEMETRY_OPTOUT: 1
+        run: |
+            $assemblyFile = "BardMusicPlayer.Ui/Properties/AssemblyInfo.cs"
+            $RegularExpression = [regex] '[^\/]*(AssemblyVersion\(\"(.*)\"\))'
+            $fileContent = Get-Content $assemblyFile
+            foreach($content in $fileContent)
+            {
+                $match = [System.Text.RegularExpressions.Regex]::Match($content, $RegularExpression)
+                if($match.Success) {
+                    $version = $match.groups[2].value
+                    Write-Output "version=$($version)" >> $Env:GITHUB_OUTPUT
+                }
+            }
+
+      - name: Setup MSBuild
+        uses: microsoft/setup-msbuild@v1
+
+      - name: Setup NuGet
+        uses: NuGet/setup-nuget@v1.0.5
+      
+      - name: setup-msbuild
+        uses: microsoft/setup-msbuild@v1.1
+
+      - name: Restore Packages
+        run: nuget restore LightAmp.sln
+
+      - name: Build solution
+        run: msbuild LightAmp.sln -t:rebuild -property:Configuration=Release -property:Platform="x64"
+
+      - name: CleanUp
+        run: |
+            Remove-Item -Path ./BardMusicPlayer.Ui/bin/x64/Release/Melanchall_DryWetMidi_Native32.dll
+            Remove-Item -Path ./BardMusicPlayer.Ui/bin/x64/Release/Melanchall_DryWetMidi_Native64.dylib
+            Remove-Item -Path ./BardMusicPlayer.Ui/bin/x64/Release/LightAmp.pdb
+            Remove-Item -Path ./BardMusicPlayer.Ui/bin/x64/Release/LightAmp.exe.config
+
+      - name: Compress the Project
+        run: Compress-Archive -Path ./BardMusicPlayer.Ui/bin/x64/Release/* -Destination ./BardMusicPlayer.Ui/bin/x64/Release/LightAmp${{steps.get-version.outputs.version}}.zip
+
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: lightamp-artifact
+          path: ./BardMusicPlayer.Ui/bin/x64/Release/LightAmp${{steps.get-version.outputs.version}}.zip
