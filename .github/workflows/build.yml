@@ -1,4 +1,4 @@
-name: .NET Build
+name: LightAmp Compile
 
 on:
   workflow_dispatch:
