@@ -45,9 +45,9 @@ jobs:
             Remove-Item -Path ./BardMusicPlayer.Ui/bin/x64/Release/Melanchall_DryWetMidi_Native64.dylib
             Remove-Item -Path ./BardMusicPlayer.Ui/bin/x64/Release/LightAmp.pdb
             Remove-Item -Path ./BardMusicPlayer.Ui/bin/x64/Release/LightAmp.exe.config
-            Remove-Item -Recurse -Confirm -Path ./BardMusicPlayer.Ui/bin/x64/Release/de-DE
-            Remove-Item -Recurse -Confirm -Path ./BardMusicPlayer.Ui/bin/x64/Release/ZeroTier.Source.ReadOnly
-
+            Remove-Item -Recurse -ErrorAction SilentlyContinue -Path ./BardMusicPlayer.Ui/bin/x64/Release/de-DE
+            Remove-Item -Recurse -ErrorAction SilentlyContinue -Path ./BardMusicPlayer.Ui/bin/x64/Release/ZeroTier.Source.ReadOnly
+            
             Copy-Item -Path ./.github/files/DrumMap.json -Destination ./BardMusicPlayer.Ui/bin/x64/Release
 
       - name: Upload Artifact
