@@ -312,9 +312,6 @@
     <Compile Include="Controls\KeyboardHeatMap.xaml.cs">
       <DependentUpon>KeyboardHeatMap.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Globals\InfoBox.xaml.cs">
-      <DependentUpon>InfoBox.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Locales\Language.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -382,10 +379,6 @@
     <Page Include="Controls\VoiceMap.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Globals\InfoBox.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
     </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -544,12 +537,6 @@
     <Resource Include="Resources\Images\ClassicLoop.png" />
     <Resource Include="Resources\Images\ClassicRefresh.png" />
     <Resource Include="Resources\Images\ClassicShuffle.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\Images\group.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\Images\splash.jpg" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Themes\" />

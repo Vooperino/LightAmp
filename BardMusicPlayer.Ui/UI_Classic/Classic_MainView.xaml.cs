@@ -480,12 +480,6 @@ namespace BardMusicPlayer.Ui.Classic
             }
         }
 
-        private void Info_Button_Click(object sender, RoutedEventArgs e)
-        {
-            InfoBox _infoBox = new InfoBox();
-            _infoBox.Show();
-        }
-
         private void Script_Button_Click(object sender, RoutedEventArgs e)
         {
             /*if (_networkWindow == null)
